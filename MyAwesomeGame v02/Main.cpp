@@ -102,14 +102,26 @@ int main(int argc, char* argv[]) {
 		if (movDown) rectangle.y += rectSpeed;
 		if (movShot) {
 
-			SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-			SDL_RenderFillRect(renderer, &shot);
 			shot.x += shotSpeed;
-			SDL_RenderPresent(renderer); // DON'T FORGET THIS!!! I need to update the screen in order to see the actions!!!
 		}
+		else{
+			
+			shot.x = rectangle.x + 150;
+			shot.y = rectangle.y + 75;
+		}
+		
+			// Don't let rectangle get out of the screen
+		if (rectangle.y < 0) rectangle.y = 0;
+		if (rectangle.y > HEIGHT - 160) rectangle.y = HEIGHT -160;
+		if (rectangle.x < 0) rectangle.x = 0;
+		if (rectangle.x > LENGTH - 260) rectangle.x = LENGTH - 260;
+		
 		SDL_SetRenderDrawColor(renderer, 34, 150, 255, 255);
 		SDL_RenderClear(renderer); // All the screen (background) will be blue
 
+		SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+		SDL_RenderFillRect(renderer, &shot);
+		
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &rectangle);
 		
