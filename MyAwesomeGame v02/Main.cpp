@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
 		SDL_WINDOWPOS_CENTERED,
 		LENGTH,
 		HEIGHT,
-		SDL_WINDOW_OPENGL);
+		SDL_WINDOW_SHOWN);
 
 	// Create renderer
 	renderer = SDL_CreateRenderer(window, -1, 0); // Parameters: window, index, flags
