@@ -135,9 +135,8 @@ int main(int argc, char* argv[]) {
 
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
-	
+
 	IMG_Quit();
-	
 	SDL_Quit();
 
 	return 0;
