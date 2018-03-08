@@ -30,10 +30,6 @@ typedef struct {
 	SDL_Texture* shot = NULL;
 	Mix_Music* music = NULL;
 	Mix_Chunk* audio = NULL;
-<<<<<<< HEAD:MyAwesomeGame/Main.cpp
-=======
-	int backGroundWidth = 0;
->>>>>>> 5af2f8ad8ac903ccc85c03ca37c40ebb773a9093:MyAwesomeGame/Main.cpp
 	int shipX = 0, shipY = 0;
 	bool movShot, movLeft, movRight, movDown, movUp = false;
 	int lastShot = 0;
@@ -66,15 +62,6 @@ void Start() {
 	// Play music
 	Mix_PlayMusic(g.music, -1);
 
-	//Load music
-	Mix_Init(MIX_INIT_OGG);
-	Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024);
-
-	g.music = Mix_LoadMUS("music/music.ogg");
-	g.audio = Mix_LoadWAV("music/audio.wav");
-
-	Mix_PlayMusic(g.music, -1);
-
 	// Variable initialization
 	g.shipX = 250;
 	g.shipY = HEIGHT / 2;
@@ -93,10 +80,7 @@ void Finish() {
 	SDL_DestroyRenderer(g.renderer);
 	
 	Mix_FreeMusic(g.music);
-<<<<<<< HEAD:MyAwesomeGame/Main.cpp
 	Mix_FreeChunk(g.audio);
-=======
->>>>>>> 5af2f8ad8ac903ccc85c03ca37c40ebb773a9093:MyAwesomeGame/Main.cpp
 	Mix_CloseAudio();
 	Mix_Quit();
 	SDL_Quit();
@@ -174,7 +158,6 @@ void MoveStuff() {
 	if (g.movDown) g.shipY += SHIP_SPEED;
 	if (g.movUp) g.shipY -= SHIP_SPEED;
 
-<<<<<<< HEAD:MyAwesomeGame/Main.cpp
 	// Cannot exceed the screen limits
 	if (g.shipX == 0) g.shipX += 1;
 	if (g.shipX == LENGTH - SPACESHIP_X) g.shipX -= 1;
@@ -184,14 +167,6 @@ void MoveStuff() {
 	if (g.movShot) {
 
 		g.movShot = false;
-=======
-
-	if (g.movShot) {
-
-		Mix_PlayChannel(-1, g.audio, 0);
-		//g.movShot = false;
-		g.shots.isAlive = true;
->>>>>>> 5af2f8ad8ac903ccc85c03ca37c40ebb773a9093:MyAwesomeGame/Main.cpp
 		
 		g.shots[g.lastShot].isAlive = true;
 		g.shots[g.lastShot].x = g.shipX + SPACESHIP_X / 2;
@@ -212,16 +187,11 @@ void MoveStuff() {
 			else g.shots[i].isAlive = false;
 		}
 	}
-
-	Mix_FreeChunk(g.audio);
 }
 
 void Draw() {
 
-<<<<<<< HEAD:MyAwesomeGame/Main.cpp
 	// Textures are putted into this rect in order to show the texture
-=======
->>>>>>> 5af2f8ad8ac903ccc85c03ca37c40ebb773a9093:MyAwesomeGame/Main.cpp
 	SDL_Rect sprite;
 
 	// Background
@@ -233,7 +203,6 @@ void Draw() {
 		HEIGHT
 	};
 
-<<<<<<< HEAD:MyAwesomeGame/Main.cpp
 	SDL_RenderCopy(g.renderer, g.backGround, NULL, &sprite);
 
 	// Laser
@@ -251,21 +220,6 @@ void Draw() {
 
 			SDL_RenderCopy(g.renderer, g.shot, NULL, &sprite);
 		}
-=======
-	SDL_RenderCopy(g.renderer, g.backGround, nullptr, &sprite);
-
-	// Laser
-	if (g.shots.isAlive) {
-		sprite = {
-
-			g.shots.x,
-			g.shots.y,
-			64,
-			64 ///////////////////
-		};
-
-		SDL_RenderCopy(g.renderer, g.shot, nullptr, &sprite);
->>>>>>> 5af2f8ad8ac903ccc85c03ca37c40ebb773a9093:MyAwesomeGame/Main.cpp
 	}
 
 	// Ship
@@ -277,11 +231,7 @@ void Draw() {
 		SPACESHIP_Y
 	};
 
-<<<<<<< HEAD:MyAwesomeGame/Main.cpp
 	SDL_RenderCopy(g.renderer, g.ship, NULL, &sprite);
-=======
-	SDL_RenderCopy(g.renderer, g.ship, nullptr, &sprite);
->>>>>>> 5af2f8ad8ac903ccc85c03ca37c40ebb773a9093:MyAwesomeGame/Main.cpp
 
 	SDL_RenderPresent(g.renderer); // Render present is needed in order to show new sprites / changes of the screen
 }

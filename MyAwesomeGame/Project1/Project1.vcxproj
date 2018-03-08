@@ -77,19 +77,11 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-<<<<<<< HEAD:MyAwesomeGame/Project1/Project1.vcxproj
       <AdditionalIncludeDirectories>C:\Users\usuario\Desktop\MyAwesomeGame2-master\MyAwesomeGame\SDL_Image\include;C:\Users\usuario\Desktop\MyAwesomeGame2-master\MyAwesomeGame\SDL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>C:\Users\usuario\Desktop\MyAwesomeGame2-master\MyAwesomeGame\SDL_Image\libx86;C:\Users\usuario\Desktop\MyAwesomeGame2-master\MyAwesomeGame\SDL\libx86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-=======
-      <AdditionalIncludeDirectories>C:\Users\gerardmf2\Desktop\MyAwesomeGame\SDL_Image\include;C:\Users\gerardmf2\Desktop\MyAwesomeGame\SDL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>C:\Users\gerardmf2\Desktop\MyAwesomeGame\SDL_Image\libx86;C:\Users\gerardmf2\Desktop\MyAwesomeGame\SDL\libx86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
->>>>>>> 5af2f8ad8ac903ccc85c03ca37c40ebb773a9093:MyAwesomeGame/Project1/Project1.vcxproj
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
