@@ -7,8 +7,13 @@
 #pragma comment(lib, "../SDL_Mixer/libx86/SDL2_mixer.lib")
 #define LENGTH 1920
 #define HEIGHT 1080
+<<<<<<< HEAD
 #define SHIP_SPEED 10
 #define SHOT_SPEED 15
+=======
+#define SHIP_SPEED 1
+#define SHOT_SPEED 1
+>>>>>>> 92ed8a6931e964e2bd7dc8e4338e1580179d9b9a
 #define SPACESHIP_X 64
 #define SPACESHIP_Y 64
 #define LASER_X 64
@@ -89,6 +94,10 @@ void Finish() {
 
 bool CheckInput() {
 
+<<<<<<< HEAD
+=======
+	// If an event is detected it will return true
+>>>>>>> 92ed8a6931e964e2bd7dc8e4338e1580179d9b9a
 	bool ret = true;
 	SDL_Event event;
 
@@ -131,7 +140,11 @@ bool CheckInput() {
 				g.movUp = true;
 				break;
 			case SDLK_x:
+<<<<<<< HEAD
 				ret = false; // Exit program if 'x' is pressed
+=======
+				ret = false;
+>>>>>>> 92ed8a6931e964e2bd7dc8e4338e1580179d9b9a
 				break;
 			case SDLK_SPACE:
 				if (!g.shots.isAlive) {    // The player can only shot when the shot is not alive
@@ -164,10 +177,17 @@ void MoveStuff() {
 	if (g.movUp) g.shipY -= SHIP_SPEED;
 
 	// Cannot exceed the screen limits
+<<<<<<< HEAD
 	if (g.shipX < 0) g.shipX += SHIP_SPEED;
 	if (g.shipX > LENGTH - SPACESHIP_X) g.shipX -= SHIP_SPEED;
 	if (g.shipY < 0) g.shipY += SHIP_SPEED;
 	if (g.shipY > HEIGHT - SPACESHIP_Y) g.shipY -= SHIP_SPEED;
+=======
+	if (g.shipX == 0) g.shipX += 1;
+	if (g.shipX == LENGTH - SPACESHIP_X) g.shipX -= 1;
+	if (g.shipY == 0) g.shipY += 1;
+	if (g.shipY == HEIGHT - SPACESHIP_Y) g.shipY -= 1;
+>>>>>>> 92ed8a6931e964e2bd7dc8e4338e1580179d9b9a
 
 	if (!g.shots.isAlive) {
 
