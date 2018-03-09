@@ -11,9 +11,8 @@
 #define SHOT_SPEED 1
 #define SPACESHIP_X 64
 #define SPACESHIP_Y 64
-#define LASER_X 45
-#define LASER_Y 50
-#define TOTAL_SHOTS 1
+#define LASER_X 64
+#define LASER_Y 64
 
 typedef struct {
 
@@ -32,8 +31,7 @@ typedef struct {
 	Mix_Chunk* audio = NULL;
 	int shipX = 0, shipY = 0;
 	bool movShot, movLeft, movRight, movDown, movUp = false;
-	int lastShot = 0;
-	Projectile shots[TOTAL_SHOTS];
+	Projectile shots;
 } Globals;
 
 Globals g;
@@ -135,7 +133,10 @@ bool CheckInput() {
 				break;
 			case SDLK_SPACE:
 				Mix_PlayChannel(-1, g.audio, 0);
+				g.shots.x = g.shipX;
+				g.shots.y = g.shipY;
 				g.movShot = true;
+				g.shots.isAlive = true;
 				break;
 			default:
 				break;
@@ -164,28 +165,15 @@ void MoveStuff() {
 	if (g.shipY == 0) g.shipY += 1;
 	if (g.shipY == HEIGHT - SPACESHIP_Y) g.shipY -= 1;
 
-	if (g.movShot) {
+	if (!g.movShot && !g.shots.isAlive) {
 
-		g.movShot = false;
-		
-		g.shots[g.lastShot].isAlive = true;
-		g.shots[g.lastShot].x = g.shipX + SPACESHIP_X / 2;
-		g.shots[g.lastShot].y = g.shipY;
-		g.lastShot++;
-
-		if (g.lastShot == TOTAL_SHOTS) g.lastShot = 0;
+		g.shots.x = g.shipX;
+		g.shots.y = g.shipY;
 	}
+	else {
 
-	for (int i = 0; i < TOTAL_SHOTS; i++) {
-
-		if (g.shots[i].isAlive) {
-
-			if (g.shots[i].x < LENGTH) {
-
-				g.shots[i].x += SHOT_SPEED;
-			}
-			else g.shots[i].isAlive = false;
-		}
+		g.shots.x += SHOT_SPEED;
+		g.shots.isAlive = false;
 	}
 }
 
@@ -206,22 +194,16 @@ void Draw() {
 	SDL_RenderCopy(g.renderer, g.backGround, NULL, &sprite);
 
 	// Laser
-	for (int i = 0; i < TOTAL_SHOTS; i++) {
+	sprite = {
 
-		if (g.shots[i].isAlive) {
+		g.shots.x,
+		g.shots.y,
+		LASER_X,
+		LASER_Y
+	};
 
-			sprite = {
-
-				g.shots[i].x,
-				g.shots[i].y,
-				64,
-				64
-			};
-
-			SDL_RenderCopy(g.renderer, g.shot, NULL, &sprite);
-		}
-	}
-
+	SDL_RenderCopy(g.renderer, g.shot, NULL, &sprite);
+	
 	// Ship
 	sprite = {
 
